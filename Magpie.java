@@ -42,7 +42,21 @@ public class Magpie
   {
    response = "Tell me more about your family.";
   }
-  else
+  else if (statement.indexOf("ted") >= 0
+             || statement.indexOf("doug") >=0
+             || statement.indexOf("kiang") >=0
+             || statement.indexOf("landgraf") >=0)
+  {
+    response = "I heard he is a gentleman and a scholar.";
+  }         
+  else if (statement.indexOf("dog") >= 0
+             || statement.indexOf("cat") >=0
+             || statement.indexOf("dogs") >=0
+             || statement.indexOf("cats") >=0)
+  {
+   response = "I love pets. Tell me more about yours.";
+  }
+  else           
   {
    response = getRandomResponse();
   }
@@ -70,7 +84,7 @@ public class Magpie
   }
   else if (whichResponse == 2)
   {
-   response = "Do you really think so?";
+   response = "Do you really think so?"; 
   }
   else if (whichResponse == 3)
   {
