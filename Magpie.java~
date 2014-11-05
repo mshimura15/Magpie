@@ -10,7 +10,7 @@
  * @author Laurie White
  * @version April 2012
  */
-public class Magpie2
+public class Magpie
 {
  /**
   * Get a default greeting  
@@ -35,6 +35,18 @@ public class Magpie2
   {
    response = "Why so negative?";
   }
+  else if (statement.indexOf("yes") >= 0)
+  {
+   response = "That's great!";
+  }
+  else if (statement.indexOf("apple") >= 0)
+  {
+   response = "Fruits are very healthy.";
+  }
+  else if (statement.indexOf("school") >= 0)
+  {
+   response = "I love school.";
+  }
   else if (statement.indexOf("mother") >= 0
     || statement.indexOf("father") >= 0
     || statement.indexOf("sister") >= 0
@@ -42,7 +54,21 @@ public class Magpie2
   {
    response = "Tell me more about your family.";
   }
-  else
+  else if (statement.indexOf("ted") >= 0
+             || statement.indexOf("doug") >=0
+             || statement.indexOf("kiang") >=0
+             || statement.indexOf("landgraf") >=0)
+  {
+    response = "I heard he is a gentleman and a scholar.";
+  }         
+  else if (statement.indexOf("dog") >= 0
+             || statement.indexOf("cat") >=0
+             || statement.indexOf("dogs") >=0
+             || statement.indexOf("cats") >=0)
+  {
+   response = "I love pets. Tell me more about yours.";
+  }
+  else           
   {
    response = getRandomResponse();
   }
@@ -55,7 +81,7 @@ public class Magpie2
   */
  private String getRandomResponse()
  {
-  final int NUMBER_OF_RESPONSES = 4;
+  final int NUMBER_OF_RESPONSES = 6;
   double r = Math.random();
   int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
   String response = "";
@@ -70,11 +96,19 @@ public class Magpie2
   }
   else if (whichResponse == 2)
   {
-   response = "Do you really think so?";
+   response = "Do you really think so?"; 
   }
   else if (whichResponse == 3)
   {
    response = "You don't say.";
+  }
+  else if (whichResponse == 4)
+  {
+    response = "That's amazing!";
+  }
+   else if (whichResponse == 5)
+  {
+    response = "Wow!";
   }
 
   return response;
