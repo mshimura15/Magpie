@@ -70,16 +70,89 @@ public class Magpie
   {
    response = "I love pets. Tell me more about yours.";
   }
-  else if (statement.trim().length() >= 0)
+  else if (findKeyword(statement, "I want to", 0) >= 0)
+  {
+   response = transformIWantToStatement(statement);
+  }
+  
+  else
+  {
+   // Look for a two word (you <something> me)
+   // pattern
+   int psn = findKeyword(statement, "you", 0);
+
+   if (psn >= 0
+     && findKeyword(statement, "me", psn) >= 0)
+   {
+    response = transformYouMeStatement(statement);
+   }
+    else if (statement.trim().length() >= 0)
   {
    response = "Say something please.";
   }
-  else           
-  {
-   response = getRandomResponse();
+   else
+   {
+    response = getRandomResponse();
+   }
   }
+ 
+  
+  
   return response;
  }
+ 
+ 
+  
+ /**
+  * Take a statement with "I want to <something>." and transform it into 
+  * "What would it mean to <something>?"
+  * @param statement the user statement, assumed to contain "I want to"
+  * @return the transformed statement
+  */
+ private String transformIWantToStatement(String statement)
+ {
+  //  Remove the final period, if there is one
+  statement = statement.trim();
+  String lastChar = statement.substring(statement
+    .length() - 1);
+  if (lastChar.equals("."))
+  {
+   statement = statement.substring(0, statement
+     .length() - 1);
+  }
+  int psn = findKeyword (statement, "I want to", 0);
+  String restOfStatement = statement.substring(psn + 9).trim();
+  return "What would it mean to " + restOfStatement + "?";
+ }
+
+ 
+ 
+ /**
+  * Take a statement with "you <something> me" and transform it into 
+  * "What makes you think that I <something> you?"
+  * @param statement the user statement, assumed to contain "you" followed by "me"
+  * @return the transformed statement
+  */
+ private String transformYouMeStatement(String statement)
+ {
+  //  Remove the final period, if there is one
+  statement = statement.trim();
+  String lastChar = statement.substring(statement
+    .length() - 1);
+  if (lastChar.equals("."))
+  {
+   statement = statement.substring(0, statement
+     .length() - 1);
+  }
+  
+  int psnOfYou = findKeyword (statement, "you", 0);
+  int psnOfMe = findKeyword (statement, "me", psnOfYou + 3);
+  
+  String restOfStatement = statement.substring(psnOfYou + 3, psnOfMe).trim();
+  return "What makes you think that I " + restOfStatement + " you?";
+ }
+
+ 
  
  //lallalalalalalalallalalalalalallalalal
  
