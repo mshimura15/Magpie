@@ -57,7 +57,9 @@ public class Magpie
   else if (statement.indexOf("ted") >= 0
              || statement.indexOf("doug") >=0
              || statement.indexOf("kiang") >=0
-             || statement.indexOf("landgraf") >=0)
+             || statement.indexOf("landgraf") >=0
+               || statement.indexOf("Kiang") >=0
+             || statement.indexOf("Landgraf") >=0)
   {
     response = "I heard he is a gentleman and a scholar.";
   }         
@@ -67,6 +69,10 @@ public class Magpie
              || statement.indexOf("cats") >=0)
   {
    response = "I love pets. Tell me more about yours.";
+  }
+  else if (statement.trim().length() >= 0)
+  {
+   response = "Say something please.";
   }
   else           
   {
