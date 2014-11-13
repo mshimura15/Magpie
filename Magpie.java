@@ -11,8 +11,8 @@ public class Magpie
  {
   String response = "";
   statement = statement.trim();
-  statement = statement.replace("you","me");
-  statement = statement.replace("I", "are");
+  //statement = statement.replace("you","me");
+  //statement = statement.replace("I", "are");
   
   if( statement.length() == 0)
   {
