@@ -11,10 +11,27 @@ public class Magpie
  {
   String response = "";
   statement = statement.trim();
+  //statement = statement.replace("you","me");
+  //statement = statement.replace("I", "are");
+  
   if( statement.length() == 0)
   {
     response = "Say something please.";
   }
+  
+    else if (findKeyword(statement, "I want to", 0) >= 0)
+  {
+   response = transformIWantToStatement(statement);
+  }    
+    
+  else if (findKeyword(statement, "is", 0) >= 0)
+{
+  int psn = findKeyword(statement, "is", 0);
+  String restOfStatement = statement.substring(psn + 3).trim();
+  String beginningOfStatement = statement.substring(0, psn);
+  response = "Why is " + beginningOfStatement + restOfStatement + "?";
+}
+  
   else if (findKeyword(statement, "no") >= 0)
   {
    response = "Why so negative?";
@@ -54,10 +71,6 @@ public class Magpie
   {
    response = "I love pets. Tell me more about yours.";
   }
-  else if (findKeyword(statement, "I want to", 0) >= 0)
-  {
-   response = transformIWantToStatement(statement);
-  }
   else
   {
    // Look for a two word (you <something> me)
@@ -93,10 +106,8 @@ public class Magpie
   String restOfStatement = statement.substring(psn + 9).trim();
   // if the statement has a you in it, change it to me or I, depending.
   //string has built in replace api
-  if (
   return "What would it mean to " + restOfStatement + "?";
  }
-
  
  
  /**
