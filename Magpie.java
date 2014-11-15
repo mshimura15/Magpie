@@ -45,7 +45,7 @@ public class Magpie
   int psn = findKeyword(statement, "you are", 0);
   String restOfStatement = statement.substring(psn + 8).trim();
   String beginningOfStatement = statement.substring(0, psn);
-  response = "Why am I" + beginningOfStatement + restOfStatement + "?";
+  response = "Why am I " + beginningOfStatement + restOfStatement + "?";
 }
     else if (findKeyword(statement, "are", 0) >= 0)
 {
@@ -53,6 +53,13 @@ public class Magpie
   String restOfStatement = statement.substring(psn + 4).trim();
   String beginningOfStatement = statement.substring(0, psn);
   response = "Why are " + beginningOfStatement + restOfStatement + "?";
+}
+    else if (findKeyword(statement, "would", 0) >= 0)
+{
+  int psn = findKeyword(statement, "i would", 0);
+  String restOfStatement = statement.substring(psn + 8).trim();
+  String beginningOfStatement = statement.substring(0, psn);
+  response = "Why would you " + beginningOfStatement + restOfStatement + "?";
 }
   
   else if (findKeyword(statement, "no") >= 0)
